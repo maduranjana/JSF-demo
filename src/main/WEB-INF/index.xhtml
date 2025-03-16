@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Login, Register, User List</title>
+</h:head>
+<h:body>
+
+    <!-- Login Form -->
+    <h2>Login</h2>
+    <h:form>
+        <h:outputLabel for="loginEmail" value="Email:" />
+        <h:inputText id="loginEmail" value="#{userBean.loginEmail}" required="true" />
+
+        <h:outputLabel for="loginPassword" value="Password:" />
+        <h:inputSecret id="loginPassword" value="#{userBean.loginPassword}" required="true" />
+
+        <h:commandButton value="Login" action="#{userBean.loginUser}" />
+    </h:form>
+
+    <!-- Registration Form -->
+    <h2>Register</h2>
+    <h:form>
+        <h:outputLabel for="name" value="Name:" />
+        <h:inputText id="name" value="#{userBean.user.name}" required="true" />
+
+        <h:outputLabel for="email" value="Email:" />
+        <h:inputText id="email" value="#{userBean.user.email}" required="true" />
+
+        <h:outputLabel for="password" value="Password:" />
+        <h:inputSecret id="password" value="#{userBean.user.password}" required="true" />
+
+        <h:commandButton value="Register" action="#{userBean.saveUser}" />
+    </h:form>
+
+    <h:outputText value="#{userBean.message}" style="color: red;" />
+
+    <!-- User List -->
+    <h2>User List</h2>
+    <h:dataTable value="#{userBean.users}" var="user" border="1">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{user.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            #{user.name}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{user.email}
+        </h:column>
+    </h:dataTable>
+
+</h:body>
+</html>
